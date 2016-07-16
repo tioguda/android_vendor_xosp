@@ -253,6 +253,11 @@ else
     # If XOSP_BUILDTYPE is not defined, set to UNOFFICIAL
     XOSP_BUILDTYPE := UNOFFICIAL
 		  XOSP_VERSION := XOSP-$(BUILD_MAJOR).$(BUILD_MINOR)-FINAL-MM-$(XOSP_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(XOSP_BUILD)
+
+               #Build XOSPOTA if the target product is an unofficial
+	       PRODUCT_PACKAGES += \
+		   XOSPOTA
+
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
