@@ -141,7 +141,8 @@ PRODUCT_PACKAGES += \
     CMAudioService \
     Development \
     BluetoothExt \
-    Profiles
+    Profiles \
+    ThemeManagerService
 
 # Optional packages
 PRODUCT_PACKAGES += \
