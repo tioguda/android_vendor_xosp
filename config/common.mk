@@ -138,6 +138,7 @@ include vendor/xosp/config/themes_common.mk
 include vendor/xosp/config/cmsdk_common.mk
 
 PRODUCT_PACKAGES += \
+    CMAudioService \
     Development \
     BluetoothExt \
     Profiles
