@@ -134,9 +134,12 @@ include vendor/xosp/config/themes_common.mk
 include vendor/xosp/config/cmsdk_common.mk
 
 PRODUCT_PACKAGES += \
+    CMAudioService \
     Development \
     BluetoothExt \
-    Profiles
+    Profiles \
+    ThemeManagerService \
+    WeatherManagerService
 
 # Optional packages
 PRODUCT_PACKAGES += \
@@ -182,6 +185,16 @@ PRODUCT_PACKAGES += \
     strace \
     pigz
 
+# Custom off-mode charger
+ifneq ($(WITH_CM_CHARGER),false)
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    cm_charger_res_images \
+    font_log.png \
+    libhealthd.cm
+endif
+
+# ExFAT support
 WITH_EXFAT ?= true
 ifeq ($(WITH_EXFAT),true)
 TARGET_USES_EXFAT := true
@@ -248,6 +261,9 @@ ifeq ($(XOSP_BUILDTYPE), OFFICIAL)
 		#Copy the prebuilt XOSPDelta if the device is official!
 		PRODUCT_COPY_FILES += \
 			vendor/xosp/prebuilt/common/XOSPDelta.zip:install/xospdelta/XOSPDelta.zip
+
+else ifeq ($(XOSP_BUILDTYPE), EXPERIMENTAL)
+        XOSP_VERSION := XOSP-$(XOSP_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(XOSP_BUILD)
 
 else
     # If XOSP_BUILDTYPE is not defined, set to UNOFFICIAL
